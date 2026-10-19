@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Innovazione 2026/2027 | Rappresentanti d'Istituto</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                            950: '#0f172a'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .hero-glow {
+            background: radial-gradient(circle at 50% 20%, rgba(99, 102, 241, 0.15) 0%, rgba(15, 23, 42, 0) 70%);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased selection:bg-indigo-500 selection:text-white">
+
+    <!-- Toast Notification System (Replaces alert) -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-3 pointer-events-none"></div>
+
+    <!-- Header / Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo & Badge -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/25 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-graduation-cap text-white text-lg"></i>
+                </div>
+                <div>
+                    <span class="font-extrabold text-lg bg-gradient-to-r from-white via-indigo-200 to-indigo-400 bg-clip-text text-transparent">LISTA INNOVAZIONE</span>
+                    <span class="block text-xs font-medium text-indigo-400 tracking-wider">Rappresentanti 2026/2027</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-sm">
+                <a href="#home" class="text-slate-300 hover:text-indigo-400 transition-colors">Home</a>
+                <a href="#programma" class="text-slate-300 hover:text-indigo-400 transition-colors">Programma</a>
+                <a href="#bacheca" class="text-slate-300 hover:text-indigo-400 transition-colors">Bacheca & Eventi</a>
+                <a href="#segnalazioni" class="text-slate-300 hover:text-indigo-400 transition-colors">Dillo ai Rappresentanti</a>
+                <a href="#faq" class="text-slate-300 hover:text-indigo-400 transition-colors">FAQ</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <div class="hidden md:flex items-center gap-4">
+                <a href="#segnalazioni" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm shadow-lg shadow-indigo-600/30 transition-all hover:-translate-y-0.5">
+                    <i class="fa-solid fa-paper-plane mr-2"></i>Invia un'idea
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white p-2 text-xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 w-full bg-slate-900 border-b border-slate-800 p-6 flex flex-col gap-4 shadow-2xl">
+            <a href="#home" class="mobile-link text-slate-300 hover:text-indigo-400 font-medium py-2 border-b border-slate-800">Home</a>
+            <a href="#programma" class="mobile-link text-slate-300 hover:text-indigo-400 font-medium py-2 border-b border-slate-800">Programma</a>
+            <a href="#bacheca" class="mobile-link text-slate-300 hover:text-indigo-400 font-medium py-2 border-b border-slate-800">Bacheca & Eventi</a>
+            <a href="#segnalazioni" class="mobile-link text-slate-300 hover:text-indigo-400 font-medium py-2 border-b border-slate-800">Dillo ai Rappresentanti</a>
+            <a href="#faq" class="mobile-link text-slate-300 hover:text-indigo-400 font-medium py-2">FAQ</a>
+            <a href="#segnalazioni" class="mobile-link w-full text-center py-3 rounded-xl bg-indigo-600 text-white font-semibold text-sm shadow-lg shadow-indigo-600/30">Invia un'idea</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden hero-glow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-950/80 border border-indigo-500/30 text-indigo-300 text-xs font-semibold mb-6 shadow-inner">
+                <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
+                Elezioni d'Istituto 2026/2027 • Vota Lista Innovazione
+            </div>
+            
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white mb-6 leading-tight">
+                La tua voce, <br class="hidden sm:inline"><span class="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">il tuo futuro.</span>
+            </h1>
+            
+            <p class="max-w-2xl mx-auto text-base sm:text-lg text-slate-400 mb-10">
+                Siamo stanchi delle solite promesse vuote. Vogliamo una scuola digitale, inclusiva, ricca di eventi e realmente a misura di studente. Ascolto attivo e concretezza.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+                <a href="#programma" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-base shadow-xl shadow-indigo-600/30 transition-all hover:-translate-y-1">
+                    Scopri il Programma <i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+                <a href="#segnalazioni" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-card hover:bg-slate-800 text-slate-200 font-bold text-base transition-all hover:-translate-y-1">
+                    Invia una Segnalazione <i class="fa-solid fa-lightbulb ml-2 text-yellow-400"></i>
+                </a>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                <div class="glass-card p-6 rounded-2xl">
+                    <div class="text-3xl font-black text-indigo-400 mb-1">100%</div>
+                    <div class="text-xs text-slate-400 font-medium">Trasparenza e Impegno</div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl">
+                    <div class="text-3xl font-black text-purple-400 mb-1">4+</div>
+                    <div class="text-xs text-slate-400 font-medium">Aree di Intervento</div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl">
+                    <div class="text-3xl font-black text-pink-400 mb-1">24/7</div>
+                    <div class="text-xs text-slate-400 font-medium">Ascolto Studentesco</div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl">
+                    <div class="text-3xl font-black text-emerald-400 mb-1">Live</div>
+                    <div class="text-xs text-slate-400 font-medium">Bacheca e Proposte</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programma / Proposte Section -->
+    <section id="programma" class="py-24 bg-slate-900/50 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-indigo-400 font-bold text-sm tracking-widest uppercase mb-3 block">Il Nostro Impegno Concreto</span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white mb-4">Programma Elettorale 2026/2027</h2>
+                <p class="text-slate-400 text-base">Esplora le nostre proposte suddivise per macro-aree. Clicca su ciascuna card per scoprire i dettagli e le modalità di realizzazione.</p>
+                
+                <!-- Filter Category Buttons -->
+                <div class="flex flex-wrap justify-center gap-2 mt-8">
+                    <button class="filter-btn px-5 py-2.5 rounded-xl bg-indigo-600 text-white font-semibold text-sm transition-all shadow-md" data-filter="all">Tutte le Aree</button>
+                    <button class="filter-btn px-5 py-2.5 rounded-xl glass-card text-slate-300 hover:text-white hover:bg-slate-800 font-semibold text-sm transition-all" data-filter="didattica">Didattica e Aule</button>
+                    <button class="filter-btn px-5 py-2.5 rounded-xl glass-card text-slate-300 hover:text-white hover:bg-slate-800 font-semibold text-sm transition-all" data-filter="eventi">Eventi e Socialità</button>
+                    <button class="filter-btn px-5 py-2.5 rounded-xl glass-card text-slate-300 hover:text-white hover:bg-slate-800 font-semibold text-sm transition-all" data-filter="benessere">Benessere e Servizi</button>
+                    <button class="filter-btn px-5 py-2.5 rounded-xl glass-card text-slate-300 hover:text-white hover:bg-slate-800 font-semibold text-sm transition-all" data-filter="tecnologia">Tecnologia e Strutture</button>
+                </div>
+            </div>
+
+            <!-- Program Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="program-grid">
+                
+                <!-- Card 1: Didattica -->
+                <div class="program-card glass-card rounded-2xl p-6 flex flex-col justify-between border border-slate-800 hover:border-indigo-500/50 transition-all group" data-category="didattica">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+                        <span class="text-xs font-bold text-blue-400 uppercase tracking-wider mb-2 block">Didattica & Aule</span>
+                        <h3 class="text-xl font-bold text-white mb-3">Orari flessibili e sportello help</h3>
+                        <p class="text-slate-400 text-sm mb-6">Revisione degli spazi ricreativi interni ed esterni, introduzione di sportelli peer-to-peer pomeridiani e pause studio strutturate.</p>
+                    </div>
+                    <button onclick="openModal('Didattica e Aule', 'Vogliamo introdurre cicli di lezioni con metodologie innovative, supporto psicologico integrato nello studio e spazi comuni autogestiti durante i periodi di pausa. Accordi con i docenti per ottimizzare i carichi di verifiche settimanali.')" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-indigo-600 text-slate-200 hover:text-white font-semibold text-sm transition-all flex items-center justify-center gap-2">
+                        Leggi i dettagli <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </button>
+                </div>
+
+                <!-- Card 2: Eventi -->
+                <div class="program-card glass-card rounded-2xl p-6 flex flex-col justify-between border border-slate-800 hover:border-indigo-500/50 transition-all group" data-category="eventi">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+                        <span class="text-xs font-bold text-purple-400 uppercase tracking-wider mb-2 block">Eventi & Socialità</span>
+                        <h3 class="text-xl font-bold text-white mb-3">Tornei sportivi e feste d'istituto</h3>
+                        <p class="text-slate-400 text-sm mb-6">Organizzazione di tornei interclasse di calcio, pallavolo ed eSports, oltre a feste d'istituto autunnali e di fine anno di alto livello.</p>
+                    </div>
+                    <button onclick="openModal('Eventi e Socialità', 'La scuola non è solo studio. Proponiamo almeno 3 grandi assemblee tematiche autogestite all anno con ospiti esterni di rilievo, tornei sportivi primaverili con premiazioni ufficiali e la riapertura della radio scolastica durante gli intervalli.')" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-indigo-600 text-slate-200 hover:text-white font-semibold text-sm transition-all flex items-center justify-center gap-2">
+                        Leggi i dettagli <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </button>
+                </div>
+
+                <!-- Card 3: Benessere -->
+                <div class="program-card glass-card rounded-2xl p-6 flex flex-col justify-between border border-slate-800 hover:border-indigo-500/50 transition-all group" data-category="benessere">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-pink-500/10 text-pink-400 flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                        </div>
+                        <span class="text-xs font-bold text-pink-400 uppercase tracking-wider mb-2 block">Benessere & Servizi</span>
+                        <h3 class="text-xl font-bold text-white mb-3">Salute mentale e distributori sani</h3>
+                        <p class="text-slate-400 text-sm mb-6">Potenziamento dello sportello d'ascolto psicologico, distributori automatici con prodotti biologici ed eco-sostenibili e postazioni ricarica.</p>
+                    </div>
+                    <button onclick="openModal('Benessere e Servizi', 'Il benessere emotivo degli studenti è al primo posto. Vogliamo garantire la presenza costante di psicologi scolastici formati, migliorare la qualità dei prodotti nei distributori automatici e installare distributori di acqua filtrata gratuita in ogni corridoio.')" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-indigo-600 text-slate-200 hover:text-white font-semibold text-sm transition-all flex items-center justify-center gap-2">
+                        Leggi i dettagli <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </button>
+                </div>
+
+                <!-- Card 4: Tecnologia -->
+                <div class="program-card glass-card rounded-2xl p-6 flex flex-col justify-between border border-slate-800 hover:border-indigo-500/50 transition-all group" data-category="tecnologia">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-wifi"></i>
+                        </div>
+                        <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider mb-2 block">Tecnologia & Strutture</span>
+                        <h3 class="text-xl font-bold text-white mb-3">Wi-Fi veloce e laboratori aperti</h3>
+                        <p class="text-slate-400 text-sm mb-6">Copertura Wi-Fi estesa a tutto l'istituto, aggiornamento postazioni informatiche nei laboratori e banchi di ricarica dispositivi nei corridoi.</p>
+                    </div>
+                    <button onclick="openModal('Tecnologia e Strutture', 'Internet veloce in ogni aula non è un lusso, è una necessità didattica. Chiederemo l upgrade della fibra ottica scolastica, l apertura pomeridiana dei laboratori multimediali per progetti studenteschi e la manutenzione rapida delle tapparelle e banchi danneggiati.')" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-indigo-600 text-slate-200 hover:text-white font-semibold text-sm transition-all flex items-center justify-center gap-2">
+                        Leggi i dettagli <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Bacheca Avvisi ed Eventi -->
+    <section id="bacheca" class="py-24 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                <div>
+                    <span class="text-indigo-400 font-bold text-sm tracking-widest uppercase mb-3 block">Aggiornamenti in Tempo Reale</span>
+                    <h2 class="text-3xl sm:text-5xl font-black text-white">Bacheca Avvisi ed Eventi</h2>
+                </div>
+                <!-- Event Filters -->
+                <div class="flex flex-wrap gap-2">
+                    <button class="event-filter px-4 py-2 rounded-xl bg-indigo-600 text-white font-medium text-xs transition-all" data-filter="all">Tutti</button>
+                    <button class="event-filter px-4 py-2 rounded-xl glass-card text-slate-300 hover:text-white font-medium text-xs transition-all" data-filter="assemblea">Assemblee</button>
+                    <button class="event-filter px-4 py-2 rounded-xl glass-card text-slate-300 hover:text-white font-medium text-xs transition-all" data-filter="sport">Sport</button>
+                    <button class="event-filter px-4 py-2 rounded-xl glass-card text-slate-300 hover:text-white font-medium text-xs transition-all" data-filter="scadenza">Scadenze</button>
+                </div>
+            </div>
+
+            <!-- Events Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="events-grid">
+                
+                <!-- Event 1 -->
+                <div class="event-card glass-card rounded-2xl p-6 border border-slate-800 relative overflow-hidden" data-category="assemblea">
+                    <div class="absolute top-0 right-0 bg-indigo-600 text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl">Assemblea</div>
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-14 h-14 rounded-xl bg-indigo-950 border border-indigo-500/30 flex flex-col items-center justify-center text-indigo-300">
+                            <span class="text-xs font-bold uppercase">Nov</span>
+                            <span class="text-xl font-black">12</span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Prima Assemblea d'Istituto</h3>
+                            <p class="text-xs text-slate-400">Auditorium Centrale • Ore 09:00</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm mb-6">Presentazione ufficiale dei candidati, votazione dei punti programmatici e dibattito aperto su regolamento d'istituto e attività extracurricolari.</p>
+                    <div class="flex items-center justify-between pt-4 border-t border-slate-800 text-xs text-slate-400">
+                        <span><i class="fa-regular fa-clock mr-1"></i> Durata: 3 ore</span>
+                        <button onclick="showToast('Evento aggiunto al tuo promemoria!')" class="text-indigo-400 hover:text-indigo-300 font-semibold"><i class="fa-regular fa-bell mr-1"></i> Ricordami</button>
+                    </div>
+                </div>
+
+                <!-- Event 2 -->
+                <div class="event-card glass-card rounded-2xl p-6 border border-slate-800 relative overflow-hidden" data-category="sport">
+                    <div class="absolute top-0 right-0 bg-purple-600 text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl">Sport</div>
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-14 h-14 rounded-xl bg-purple-950 border border-purple-500/30 flex flex-col items-center justify-center text-purple-300">
+                            <span class="text-xs font-bold uppercase">Nov</span>
+                            <span class="text-xl font-black">20</span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Torneo di Calcio a 5 Interclasse</h3>
+                            <p class="text-xs text-slate-400">Palestra Scolastica • Ore 14:30</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm mb-6">Iniziano le qualificazioni per il torneo d'istituto. Le iscrizioni per ogni classe sono aperte presso i rappresentanti di piano entro il 15 novembre.</p>
+                    <div class="flex items-center justify-between pt-4 border-t border-slate-800 text-xs text-slate-400">
+                        <span><i class="fa-solid fa-trophy mr-1"></i> Premi in palio</span>
+                        <button onclick="showToast('Evento aggiunto al tuo promemoria!')" class="text-indigo-400 hover:text-indigo-300 font-semibold"><i class="fa-regular fa-bell mr-1"></i> Ricordami</button>
+                    </div>
+                </div>
+
+                <!-- Event 3 -->
+                <div class="event-card glass-card rounded-2xl p-6 border border-slate-800 relative overflow-hidden" data-category="scadenza">
+                    <div class="absolute top-0 right-0 bg-pink-600 text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl">Scadenza</div>
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-14 h-14 rounded-xl bg-pink-950 border border-pink-500/30 flex flex-col items-center justify-center text-pink-300">
+                            <span class="text-xs font-bold uppercase">Dic</span>
+                            <span class="text-xl font-black">01</span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Chiusura Raccolta Idee & Proposte</h3>
+                            <p class="text-xs text-slate-400">Online • Entro le 23:59</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm mb-6">Ultimo giorno utile per inviare le vostre proposte e richieste tramite la sezione dedicata del portale. Le migliori verranno discusse nel prossimo consiglio.</p>
+                    <div class="flex items-center justify-between pt-4 border-t border-slate-800 text-xs text-slate-400">
+                        <span><i class="fa-solid fa-triangle-exclamation mr-1"></i> Scadenza imminente</span>
+                        <button onclick="showToast('Evento aggiunto al tuo promemoria!')" class="text-indigo-400 hover:text-indigo-300 font-semibold"><i class="fa-regular fa-bell mr-1"></i> Ricordami</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Sezione "Dillo ai Rappresentanti" (Form & LocalStorage Feed) -->
+    <section id="segnalazioni" class="py-24 bg-slate-900/50 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-indigo-400 font-bold text-sm tracking-widest uppercase mb-3 block">Spazio Aperto agli Studenti</span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white mb-4">Dillo ai Rappresentanti</h2>
+                <p class="text-slate-400 text-base">Hai un'idea geniale, un problema da segnalare o una richiesta urgente? Scrivici qui sotto in modo anonimo o nominativo. Le idee più votate saranno portate direttamente in Consiglio d'Istituto.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <!-- Form Submission Column -->
+                <div class="lg:col-span-5">
+                    <div class="glass-card rounded-3xl p-8 border border-slate-800 sticky top-28">
+                        <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                            <span class="w-10 h-10 rounded-xl bg-indigo-600/20 text-indigo-400 flex items-center justify-center"><i class="fa-solid fa-pen-nib"></i></span>
+                            Invia Segnalazione
+                        </h3>
+                        <form id="idea-form" class="space-y-5">
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-slate-300 mb-2">Il tuo Nome (Opzionale)</label>
+                                <input type="text" id="author-input" placeholder="es. Mario Rossi (o lascialo vuoto per Anonimo)" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3.5 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-indigo-500 transition-colors">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-slate-300 mb-2">Categoria</label>
+                                <select id="category-input" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3.5 text-sm text-slate-200 focus:outline-none focus:border-indigo-500 transition-colors">
+                                    <option value="Didattica e Aule">📚 Didattica e Aule</option>
+                                    <option value="Eventi e Socialità">🎉 Eventi e Socialità</option>
+                                    <option value="Benessere e Servizi">☕ Benessere e Servizi</option>
+                                    <option value="Tecnologia e Strutture">💻 Tecnologia e Strutture</option>
+                                    <option value="Altro / Varie">💡 Altro / Varie</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-slate-300 mb-2">La tua Idea o Segnalazione *</label>
+                                <textarea id="message-input" rows="4" required placeholder="Descrivi dettagliatamente la tua proposta o il problema riscontrato..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3.5 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-indigo-500 transition-colors"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold text-sm shadow-xl shadow-indigo-600/30 transition-all hover:-translate-y-0.5">
+                                Pubblica Proposta <i class="fa-solid fa-paper-plane ml-2"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Feed Column with LocalStorage Upvote System -->
+                <div class="lg:col-span-7 flex flex-col gap-6">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-fire text-orange-400"></i> Proposte Recenti dalla Community
+                        </h3>
+                        <span class="text-xs text-slate-400 font-medium">Aggiornato in tempo reale</span>
+                    </div>
+
+                    <!-- Ideas Container -->
+                    <div id="ideas-feed" class="flex flex-col gap-4">
+                        <!-- Dynamic items will be injected here via JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ / Domande Frequenti -->
+    <section id="faq" class="py-24 border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-indigo-400 font-bold text-sm tracking-widest uppercase mb-3 block">Dubbi e Regolamenti</span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white mb-4">Domande Frequenti (FAQ)</h2>
+                <p class="text-slate-400 text-base">Tutto quello che c'è da sapere sui tuoi diritti, le assemblee e il ruolo dei rappresentanti.</p>
+            </div>
+
+            <!-- Accordion List -->
+            <div class="space-y-4">
+                
+                <!-- FAQ Item 1 -->
+                <div class="glass-card rounded-2xl border border-slate-800 overflow-hidden">
+                    <button class="faq-toggle w-full p-6 text-left flex items-center justify-between font-bold text-lg text-white hover:text-indigo-400 transition-colors">
+                        <span>Cosa fanno esattamente i Rappresentanti d'Istituto?</span>
+                        <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-slate-400 text-sm leading-relaxed border-t border-slate-800/50 pt-4">
+                        I rappresentanti d'istituto sono la voce ufficiale degli studenti all'interno del Consiglio d'Istituto, della Consulta Provinciale e nei rapporti con la Dirigenza Scolastica. Portano avanti le istanze della scuola, organizzano le assemblee e mediano per migliorare la vita quotidiana all'interno dell'istituto.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="glass-card rounded-2xl border border-slate-800 overflow-hidden">
+                    <button class="faq-toggle w-full p-6 text-left flex items-center justify-between font-bold text-lg text-white hover:text-indigo-400 transition-colors">
+                        <span>Come funzionano le Assemblee d'Istituto?</span>
+                        <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-slate-400 text-sm leading-relaxed border-t border-slate-800/50 pt-4">
+                        Ogni mese gli studenti hanno diritto a un'assemblea d'istituto richiesta dai rappresentanti e approvata dal Dirigente. Serve per discutere temi culturali, sociali, di attualità o per organizzare attività sportive e laboratoriali. La partecipazione è obbligatoria per tutti gli studenti iscritti.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="glass-card rounded-2xl border border-slate-800 overflow-hidden">
+                    <button class="faq-toggle w-full p-6 text-left flex items-center justify-between font-bold text-lg text-white hover:text-indigo-400 transition-colors">
+                        <span>Posso proporre un'idea anche se non faccio parte della lista?</span>
+                        <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-slate-400 text-sm leading-relaxed border-t border-slate-800/50 pt-4">
+                        Assolutamente sì! Anzi, questo portale nasce proprio per questo. Chiunque può inviare segnalazioni e idee tramite il modulo "Dillo ai Rappresentanti" qui sopra. Le idee ricevono voti dalla community e vengono valutate direttamente da noi.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="glass-card rounded-2xl border border-slate-800 overflow-hidden">
+                    <button class="faq-toggle w-full p-6 text-left flex items-center justify-between font-bold text-lg text-white hover:text-indigo-400 transition-colors">
+                        <span>Le segnalazioni anonime vengono prese in considerazione?</span>
+                        <i class="fa-solid fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-slate-400 text-sm leading-relaxed border-t border-slate-800/50 pt-4">
+                        Certamente. Se preferisci non inserire il tuo nome, la segnalazione comparirà come "Anonimo". Garantiamo la massima riservatezza per ogni segnalazione riguardante problemi strutturali o di vivibilità scolastica.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-900 pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <!-- Col 1 -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <span class="font-extrabold text-lg text-white">LISTA INNOVAZIONE 2026/2027</span>
+                    </div>
+                    <p class="text-slate-400 text-sm max-w-sm mb-6">
+                        Il portale ufficiale dei rappresentanti degli studenti. Trasparenza, partecipazione attiva e innovazione per la nostra scuola.
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <a href="https://instagram.com" target="_blank" rel="noopener" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-slate-300 hover:text-indigo-400 hover:bg-slate-800 transition-all"><i class="fa-brands fa-instagram text-lg"></i></a>
+                        <a href="https://whatsapp.com" target="_blank" rel="noopener" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-slate-300 hover:text-emerald-400 hover:bg-slate-800 transition-all"><i class="fa-brands fa-whatsapp text-lg"></i></a>
+                        <a href="mailto:rappresentanti@istituto.edu" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-slate-300 hover:text-indigo-400 hover:bg-slate-800 transition-all"><i class="fa-solid fa-envelope text-lg"></i></a>
+                    </div>
+                </div>
+
+                <!-- Col 2 -->
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Navigazione Rapida</h4>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li><a href="#home" class="hover:text-indigo-400 transition-colors">Home</a></li>
+                        <li><a href="#programma" class="hover:text-indigo-400 transition-colors">Programma Elettorale</a></li>
+                        <li><a href="#bacheca" class="hover:text-indigo-400 transition-colors">Bacheca ed Eventi</a></li>
+                        <li><a href="#segnalazioni" class="hover:text-indigo-400 transition-colors">Invia un'idea</a></li>
+                        <li><a href="#faq" class="hover:text-indigo-400 transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3 -->
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Contatti Istituzionali</h4>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li><i class="fa-solid fa-envelope mr-2 text-indigo-400"></i> rappresentanti@istituto.edu</li>
+                        <li><i class="fa-brands fa-instagram mr-2 text-pink-400"></i> @rappresentanti.innovazione</li>
+                        <li><i class="fa-solid fa-location-dot mr-2 text-purple-400"></i> Aula Rappresentanti, 2° Piano</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-900 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
+                <p>&copy; 2026 Lista Innovazione - Rappresentanti d'Istituto. Tutti i diritti riservati.</p>
+                <p class="mt-4 sm:mt-0">Design & Sviluppo per gli studenti.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Details Popup -->
+    <div id="details-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="glass-card max-w-lg w-full rounded-3xl p-8 border border-slate-700 relative transform transition-all scale-95 opacity-0" id="modal-content-box">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="modal-icon" class="w-12 h-12 rounded-xl bg-indigo-600/20 text-indigo-400 flex items-center justify-center text-xl mb-6">
+                <i class="fa-solid fa-circle-info"></i>
+            </div>
+            <h3 id="modal-title" class="text-2xl font-bold text-white mb-4">Titolo Dettaglio</h3>
+            <p id="modal-text" class="text-slate-300 text-sm leading-relaxed mb-8">Testo descrittivo approfondito...</p>
+            <button onclick="closeModal()" class="w-full py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm shadow-lg shadow-indigo-600/30">
+                Chiudi Dettagli
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript Interactivity -->
+    <script>
+        // Toast Notification System
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `pointer-events-auto flex items-center gap-3 px-5 py-3.5 rounded-2xl glass-card border ${type === 'success' ? 'border-emerald-500/30 text-emerald-300' : 'border-indigo-500/30 text-indigo-300'} shadow-2xl transition-all transform translate-y-4 opacity-0`;
+            toast.innerHTML = `
+                <i class="fa-solid ${type === 'success' ? 'fa-circle-check text-emerald-400' : 'fa-circle-info text-indigo-400'} text-lg"></i>
+                <span class="text-sm font-semibold text-slate-200">${message}</span>
+            `;
+            container.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.remove('translate-y-4', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-4', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 30) {
+                navbar.classList.add('bg-slate-950/95', 'shadow-xl');
+            } else {
+                navbar.classList.remove('bg-slate-950/95', 'shadow-xl');
+            }
+        });
+
+        // Program Filter Tabs
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const programCards = document.querySelectorAll('.program-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-indigo-600', 'text-white');
+                    b.classList.add('glass-card', 'text-slate-300');
+                });
+                btn.classList.remove('glass-card', 'text-slate-300');
+                btn.classList.add('bg-indigo-600', 'text-white');
+
+                const filter = btn.getAttribute('data-filter');
+                programCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Event Filters
+        const eventFilterBtns = document.querySelectorAll('.event-filter');
+        const eventCards = document.querySelectorAll('.event-card');
+
+        eventFilterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                eventFilterBtns.forEach(b => {
+                    b.classList.remove('bg-indigo-600', 'text-white');
+                    b.classList.add('glass-card', 'text-slate-300');
+                });
+                btn.classList.remove('glass-card', 'text-slate-300');
+                btn.classList.add('bg-indigo-600', 'text-white');
+
+                const filter = btn.getAttribute('data-filter');
+                eventCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Modal Controls
+        function openModal(title, text) {
+            const modal = document.getElementById('details-modal');
+            const box = document.getElementById('modal-content-box');
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-text').innerText = text;
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                box.classList.remove('scale-95', 'opacity-0');
+                box.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('details-modal');
+            const box = document.getElementById('modal-content-box');
+            box.classList.remove('scale-100', 'opacity-100');
+            box.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 200);
+        }
+
+        // FAQ Accordions
+        const faqToggles = document.querySelectorAll('.faq-toggle');
+        faqToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('fa-chevron-down, .fa-chevron-down');
+                
+                // Toggle current
+                content.classList.toggle('hidden');
+                toggle.querySelector('i').classList.toggle('rotate-180');
+            });
+        });
+
+        // LocalStorage Ideas & Upvote System
+        let ideas = JSON.parse(localStorage.getItem('student_ideas')) || [
+            { id: 1, author: "Marco B. (4ªB)", category: "Didattica e Aule", message: "Introdurre mensole per caricare i telefoni nelle aule e una maggiore aerazione durante i cambi d'ora.", votes: 24, date: "Oggi" },
+            { id: 2, author: "Anonimo", category: "Eventi e Socialità", message: "Organizzare una festa d'istituto in palestra prima delle vacanze di Natale con dj set studentesco.", votes: 19, date: "Ieri" },
+            { id: 3, author: "Elena R. (3ªA)", category: "Benessere e Servizi", message: "Aggiungere distributori di frutta fresca e snack biologici accanto alle merendine classiche.", votes: 15, date: "3 giorni fa" }
+        ];
+
+        function renderIdeas() {
+            const feed = document.getElementById('ideas-feed');
+            feed.innerHTML = '';
+
+            ideas.sort((a, b) => b.votes - a.votes).forEach((idea) => {
+                const card = document.createElement('div');
+                card.className = 'glass-card rounded-2xl p-6 border border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all hover:border-indigo-500/40';
+                card.innerHTML = `
+                    <div class="flex-1">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="px-2.5 py-1 rounded-lg bg-indigo-950 text-indigo-300 text-[11px] font-semibold">${idea.category}</span>
+                            <span class="text-xs text-slate-500">• ${idea.author || 'Anonimo'}</span>
+                            <span class="text-xs text-slate-600">• ${idea.date}</span>
+                        </div>
+                        <p class="text-slate-200 text-sm leading-relaxed">${escapeHtml(idea.message)}</p>
+                    </div>
+                    <div class="flex items-center gap-3 self-end sm:self-center">
+                        <button onclick="upvoteIdea(${idea.id})" class="px-4 py-2.5 rounded-xl bg-indigo-600/20 hover:bg-indigo-600 text-indigo-400 hover:text-white font-bold text-xs flex items-center gap-2 transition-all shadow-md">
+                            <i class="fa-solid fa-arrow-up"></i>
+                            <span>${idea.votes}</span>
+                        </button>
+                    </div>
+                `;
+                feed.appendChild(card);
+            });
+        }
+
+        function upvoteIdea(id) {
+            const idea = ideas.find(i => i.id === id);
+            if (idea) {
+                idea.votes += 1;
+                localStorage.setItem('student_ideas', JSON.stringify(ideas));
+                renderIdeas();
+                showToast('Hai votato con successo questa proposta!');
+            }
+        }
+
+        function escapeHtml(text) {
+            const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+            return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+
+        // Form Submit Handler
+        const ideaForm = document.getElementById('idea-form');
+        ideaForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const author = document.getElementById('author-input').value.trim();
+            const category = document.getElementById('category-input').value;
+            const message = document.getElementById('message-input').value.trim();
+
+            if (!message) return;
+
+            const newIdea = {
+                id: Date.now(),
+                author: author || 'Anonimo',
+                category: category,
+                message: message,
+                votes: 1,
+                date: 'Oggi'
+            };
+
+            ideas.unshift(newIdea);
+            localStorage.setItem('student_ideas', JSON.stringify(ideas));
+            renderIdeas();
+
+            ideaForm.reset();
+            showToast('Proposta inviata e pubblicata con successo!');
+        });
+
+        // Initial render on load
+        window.onload = function() {
+            renderIdeas();
+        };
+    </script>
+</body>
+</html>
