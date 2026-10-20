@@ -16,13 +16,13 @@
   <style>
     * { font-family: 'Sora', sans-serif; }
     body {
-      background: #0b1120;
+      background: #0f0a1c;
       color: #f1f5f9;
       min-height: 100vh;
       overflow-x: hidden;
     }
 
-    /* ===== SFONDO AURORA ANIMATO ===== */
+    /* ===== SFONDO AURORA ANIMATO (VIOLA / INDACO / BLU) ===== */
     .aurora {
       position: fixed;
       inset: 0;
@@ -32,13 +32,13 @@
     .orb {
       position: absolute;
       border-radius: 50%;
-      filter: blur(90px);
-      opacity: 0.4;
+      filter: blur(100px);
+      opacity: 0.45;
       animation: float 14s ease-in-out infinite alternate;
     }
-    .orb-1 { width: 480px; height: 480px; background: #10b981; top: -120px; left: -120px; }
-    .orb-2 { width: 420px; height: 420px; background: #0ea5e9; bottom: -100px; right: -80px; animation-delay: -4s; }
-    .orb-3 { width: 360px; height: 360px; background: #8b5cf6; top: 40%; left: 55%; animation-delay: -8s; }
+    .orb-1 { width: 480px; height: 480px; background: #7c3aed; top: -120px; left: -120px; }
+    .orb-2 { width: 420px; height: 420px; background: #4f46e5; bottom: -100px; right: -80px; animation-delay: -4s; }
+    .orb-3 { width: 360px; height: 360px; background: #c084fc; top: 40%; left: 55%; animation-delay: -8s; }
     @keyframes float {
       from { transform: translate(0, 0) scale(1); }
       to   { transform: translate(60px, 40px) scale(1.15); }
@@ -46,21 +46,21 @@
 
     /* ===== EFFETTO VETRO ===== */
     .glass {
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
     .glass-card {
-      background: rgba(15, 23, 42, 0.72);
+      background: rgba(24, 18, 43, 0.75);
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     }
     .glass-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(16, 185, 129, 0.45);
-      box-shadow: 0 12px 30px -8px rgba(16, 185, 129, 0.25);
+      border-color: rgba(168, 85, 247, 0.45);
+      box-shadow: 0 12px 30px -8px rgba(168, 85, 247, 0.3);
     }
 
     .status-badge {
@@ -70,18 +70,18 @@
       font-weight: 600;
     }
 
-    /* ===== TESTO E PULSANTI IN GRADIENTE ===== */
+    /* ===== TESTO E PULSANTI IN GRADIENTE VIOLA/INDACO ===== */
     .gradient-text {
-      background: linear-gradient(90deg, #34d399, #22d3ee, #a78bfa);
+      background: linear-gradient(90deg, #c084fc, #818cf8, #38bdf8);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
     .btn-primary {
-      background: linear-gradient(90deg, #059669, #0891b2);
+      background: linear-gradient(90deg, #7c3aed, #4f46e5);
       transition: filter 0.2s ease, transform 0.15s ease;
     }
-    .btn-primary:hover { filter: brightness(1.15); transform: translateY(-1px); }
+    .btn-primary:hover { filter: brightness(1.2); transform: translateY(-1px); }
 
     /* ===== ANIMAZIONE ENTRATA CARD ===== */
     @keyframes fadeUp {
@@ -95,18 +95,18 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: #34d399;
-      box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7);
+      background: #a855f7;
+      box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.7);
       animation: pulse 1.6s infinite;
     }
     .live-dot.offline { background: #f87171; animation: none; box-shadow: none; }
     @keyframes pulse {
-      0%   { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.6); }
-      70%  { box-shadow: 0 0 0 8px rgba(52, 211, 153, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+      0%   { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.6); }
+      70%  { box-shadow: 0 0 0 8px rgba(168, 85, 247, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0); }
     }
 
-    input:focus, textarea:focus, select:focus { border-color: #10b981 !important; }
+    input:focus, textarea:focus, select:focus { border-color: #a855f7 !important; }
   </style>
 </head>
 <body class="flex flex-col min-h-screen">
@@ -127,18 +127,18 @@
         </div>
         <div>
           <h1 class="font-bold text-lg leading-tight">IIS Marelli Dudovich</h1>
-          <p class="text-xs text-slate-400">Portale Rappresentanti d'Istituto</p>
+          <p class="text-xs text-purple-300/70">Portale Rappresentanti d'Istituto</p>
         </div>
       </div>
 
       <!-- Desktop Navigation -->
       <div class="hidden md:flex items-center space-x-6 text-sm font-medium">
-        <span class="flex items-center space-x-2 bg-slate-800/60 border border-slate-700 px-3 py-1 rounded-full text-xs text-slate-300">
+        <span class="flex items-center space-x-2 bg-slate-900/60 border border-purple-900/50 px-3 py-1 rounded-full text-xs text-slate-300">
           <span id="liveDot" class="live-dot offline"></span>
           <span id="liveText">Connessione al database...</span>
         </span>
-        <span class="text-slate-300"><i class="fa-solid fa-location-dot text-emerald-400 mr-1"></i> Via Livigno 11, Milano</span>
-        <span class="text-slate-300"><i class="fa-solid fa-door-open text-emerald-400 mr-1"></i> Aula 4TB</span>
+        <span class="text-slate-300"><i class="fa-solid fa-location-dot text-purple-400 mr-1"></i> Via Livigno 11, Milano</span>
+        <span class="text-slate-300"><i class="fa-solid fa-door-open text-purple-400 mr-1"></i> Aula 4TB</span>
         <button id="adminLoginBtn" onclick="openAdminModal()" class="btn-primary text-white px-4 py-2 rounded-lg shadow">
           <i class="fa-solid fa-user-shield mr-1"></i> Area Riservata
         </button>
@@ -151,13 +151,13 @@
     </div>
 
     <!-- Mobile Dropdown -->
-    <div id="mobileMenu" class="hidden md:hidden pt-3 pb-2 border-t border-slate-700/50 mt-2 space-y-2">
+    <div id="mobileMenu" class="hidden md:hidden pt-3 pb-2 border-t border-purple-900/40 mt-2 space-y-2">
       <div class="text-xs text-slate-300 px-2 py-1 flex items-center space-x-2">
         <span id="liveDotMobile" class="live-dot offline"></span>
         <span>Database in tempo reale</span>
       </div>
-      <div class="text-xs text-slate-300 px-2 py-1"><i class="fa-solid fa-location-dot text-emerald-400 mr-1"></i> Via Livigno 11, Milano</div>
-      <div class="text-xs text-slate-300 px-2 py-1"><i class="fa-solid fa-door-open text-emerald-400 mr-1"></i> Aula Rappresentanti 4TB</div>
+      <div class="text-xs text-slate-300 px-2 py-1"><i class="fa-solid fa-location-dot text-purple-400 mr-1"></i> Via Livigno 11, Milano</div>
+      <div class="text-xs text-slate-300 px-2 py-1"><i class="fa-solid fa-door-open text-purple-400 mr-1"></i> Aula Rappresentanti 4TB</div>
       <button onclick="openAdminModal()" class="w-full text-left btn-primary text-white px-3 py-2 rounded-lg text-sm font-medium">
         <i class="fa-solid fa-user-shield mr-1"></i> Area Riservata
       </button>
@@ -170,7 +170,7 @@
     <!-- HERO / BANNER -->
     <section class="glass rounded-2xl p-6 md:p-8 relative overflow-hidden">
       <div class="max-w-2xl z-10 relative">
-        <span class="bg-emerald-500/20 text-emerald-300 text-xs px-3 py-1 rounded-full border border-emerald-500/30 font-semibold uppercase tracking-wider">Partecipazione Studentesca</span>
+        <span class="bg-purple-500/20 text-purple-300 text-xs px-3 py-1 rounded-full border border-purple-500/30 font-semibold uppercase tracking-wider">Partecipazione Studentesca</span>
         <h2 class="text-2xl md:text-4xl font-extrabold mt-3 mb-2 gradient-text">Proponi la tua idea per la scuola</h2>
         <p class="text-slate-300 text-sm md:text-base">Invia le tue proposte ai Rappresentanti d'Istituto. Le idee approvate verranno discusse durante i prossimi incontri in Aula 4TB.</p>
       </div>
@@ -180,9 +180,9 @@
     <section class="space-y-4">
       <div class="flex justify-between items-center">
         <h3 class="text-xl font-bold text-white flex items-center">
-          <i class="fa-solid fa-bullhorn text-cyan-400 mr-2"></i> Bacheca Ufficiale Rappresentanti
+          <i class="fa-solid fa-bullhorn text-purple-400 mr-2"></i> Bacheca Ufficiale Rappresentanti
         </h3>
-        <span class="text-xs bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 px-3 py-1 rounded-full">Comunicazioni Importanti</span>
+        <span class="text-xs bg-purple-500/10 text-purple-300 border border-purple-500/30 px-3 py-1 rounded-full">Comunicazioni Importanti</span>
       </div>
       <div id="bulletinBoardList" class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <!-- Caricato dinamicamente da Firebase -->
@@ -194,27 +194,27 @@
 
     <!-- FORM INVIO PROPOSTA -->
     <section class="glass-card rounded-2xl p-6">
-      <h3 class="text-lg font-bold mb-4 text-emerald-300 flex items-center">
-        <i class="fa-solid fa-lightbulb text-yellow-400 mr-2"></i> Nuova Proposta
+      <h3 class="text-lg font-bold mb-4 text-purple-300 flex items-center">
+        <i class="fa-solid fa-lightbulb text-amber-400 mr-2"></i> Nuova Proposta
       </h3>
       <form id="ideaForm" onsubmit="submitIdea(event)" class="space-y-4">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label class="block text-xs font-semibold text-slate-300 mb-1">Nome o Pseudonimo (Opzionale)</label>
-            <input type="text" id="authorInput" placeholder="Anonimo o Nome Cognome" class="w-full bg-slate-800/80 border border-slate-700 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-emerald-500">
+            <input type="text" id="authorInput" placeholder="Anonimo o Nome Cognome" class="w-full bg-slate-900/80 border border-purple-900/50 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-purple-500">
           </div>
           <div>
             <label class="block text-xs font-semibold text-slate-300 mb-1">Classe / Anno</label>
-            <input type="text" id="classInput" placeholder="es. 4TB" class="w-full bg-slate-800/80 border border-slate-700 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-emerald-500">
+            <input type="text" id="classInput" placeholder="es. 4TB" class="w-full bg-slate-900/80 border border-purple-900/50 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-purple-500">
           </div>
         </div>
         <div>
           <label class="block text-xs font-semibold text-slate-300 mb-1">Titolo dell'Idea *</label>
-          <input type="text" id="titleInput" required placeholder="es. Torneo di calcetto o miglioramento laboratori" class="w-full bg-slate-800/80 border border-slate-700 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-emerald-500">
+          <input type="text" id="titleInput" required placeholder="es. Torneo di calcetto o miglioramento laboratori" class="w-full bg-slate-900/80 border border-purple-900/50 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-purple-500">
         </div>
         <div>
           <label class="block text-xs font-semibold text-slate-300 mb-1">Descrizione Dettagliata *</label>
-          <textarea id="descInput" required rows="3" placeholder="Spiega nei dettagli la tua proposta..." class="w-full bg-slate-800/80 border border-slate-700 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-emerald-500"></textarea>
+          <textarea id="descInput" required rows="3" placeholder="Spiega nei dettagli la tua proposta..." class="w-full bg-slate-900/80 border border-purple-900/50 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-purple-500"></textarea>
         </div>
         <button type="submit" class="btn-primary text-white font-semibold px-6 py-2.5 rounded-lg text-sm shadow-lg flex items-center justify-center space-x-2">
           <i class="fa-solid fa-paper-plane"></i>
@@ -227,14 +227,14 @@
     <section class="space-y-4">
       <div class="flex justify-between items-center">
         <h3 class="text-xl font-bold text-white flex items-center">
-          <i class="fa-solid fa-list-check text-emerald-400 mr-2"></i> Idee Approvate e in Discussione
+          <i class="fa-solid fa-list-check text-purple-400 mr-2"></i> Idee Approvate e in Discussione
         </h3>
-        <span id="ideaCount" class="text-xs bg-slate-800 text-slate-300 px-3 py-1 rounded-full border border-slate-700">0 Proposte</span>
+        <span id="ideaCount" class="text-xs bg-slate-900 text-slate-300 px-3 py-1 rounded-full border border-purple-900/50">0 Proposte</span>
       </div>
 
       <div id="ideasList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <div class="col-span-full text-center py-8 text-slate-400">
-          <i class="fa-solid fa-spinner fa-spin text-2xl mb-2 text-emerald-400"></i>
+          <i class="fa-solid fa-spinner fa-spin text-2xl mb-2 text-purple-400"></i>
           <p class="text-sm">Caricamento proposte dal server cloud...</p>
         </div>
       </div>
@@ -243,42 +243,42 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="glass mt-auto py-6 px-4 border-t border-slate-800">
+  <footer class="glass mt-auto py-6 px-4 border-t border-purple-900/40">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400">
       <div>
         <p class="font-semibold text-slate-300">IIS Marelli Dudovich - Milano</p>
         <p>Sede Incontri: Aula Rappresentanti 4TB | Via Livigno 11</p>
       </div>
       <div class="flex flex-wrap justify-center gap-3">
-        <a href="mailto:jiale.hu@marellidudovich.edu.it" class="hover:text-emerald-300 transition">jiale.hu@marellidudovich.edu.it</a>
+        <a href="mailto:jiale.hu@marellidudovich.edu.it" class="hover:text-purple-300 transition">jiale.hu@marellidudovich.edu.it</a>
         <span>•</span>
-        <a href="mailto:gabriel.pampalone@marellidudovich.edu.it" class="hover:text-emerald-300 transition">gabriel.pampalone@marellidudovich.edu.it</a>
+        <a href="mailto:gabriel.pampalone@marellidudovich.edu.it" class="hover:text-purple-300 transition">gabriel.pampalone@marellidudovich.edu.it</a>
         <span>•</span>
-        <a href="mailto:daniel.funes@marellidudovich.edu.it" class="hover:text-emerald-300 transition">daniel.funes@marellidudovich.edu.it</a>
+        <a href="mailto:daniel.funes@marellidudovich.edu.it" class="hover:text-purple-300 transition">daniel.funes@marellidudovich.edu.it</a>
       </div>
     </div>
   </footer>
 
   <!-- MODALE AUTENTICAZIONE ADMIN -->
-  <div id="adminModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="glass-card rounded-2xl max-w-lg w-full p-6 space-y-4 relative border border-slate-700 max-h-[90vh] overflow-y-auto">
+  <div id="adminModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="glass-card rounded-2xl max-w-lg w-full p-6 space-y-4 relative border border-purple-900/50 max-h-[90vh] overflow-y-auto">
       <button onclick="closeAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
         <i class="fa-solid fa-xmark text-lg"></i>
       </button>
 
       <h3 class="text-lg font-bold text-white flex items-center">
-        <i class="fa-solid fa-lock text-emerald-400 mr-2"></i> Accesso Rappresentanti
+        <i class="fa-solid fa-lock text-purple-400 mr-2"></i> Accesso Rappresentanti
       </h3>
 
       <div id="loginFormContainer">
         <form onsubmit="handleLogin(event)" class="space-y-3">
           <div>
             <label class="block text-xs font-semibold text-slate-300 mb-1">Email Super Admin</label>
-            <input type="email" id="adminEmail" required class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-emerald-500">
+            <input type="email" id="adminEmail" required class="w-full bg-slate-900 border border-purple-900/50 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-purple-500">
           </div>
           <div>
             <label class="block text-xs font-semibold text-slate-300 mb-1">Password Accesso</label>
-            <input type="password" id="adminPass" required class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-emerald-500">
+            <input type="password" id="adminPass" required class="w-full bg-slate-900 border border-purple-900/50 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-purple-500">
           </div>
           <button type="submit" class="w-full btn-primary text-white font-semibold py-2.5 rounded-lg text-sm">
             Accedi
@@ -287,34 +287,34 @@
       </div>
 
       <div id="adminPanel" class="hidden space-y-6">
-        <div class="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-emerald-400 text-xs flex justify-between items-center">
+        <div class="p-3 bg-purple-500/10 border border-purple-500/20 rounded-lg text-purple-300 text-xs flex justify-between items-center">
           <span><i class="fa-solid fa-circle-check mr-1"></i> Loggato come Super Admin</span>
           <button onclick="handleLogout()" class="text-red-400 hover:underline">Esci</button>
         </div>
 
         <!-- SEZIONE AGGIUNTA COMUNICATO BACHECA -->
-        <div class="p-4 bg-slate-800/80 rounded-xl border border-slate-700 space-y-3">
-          <h4 class="font-bold text-sm text-cyan-300 flex items-center">
+        <div class="p-4 bg-slate-900/90 rounded-xl border border-purple-900/50 space-y-3">
+          <h4 class="font-bold text-sm text-purple-300 flex items-center">
             <i class="fa-solid fa-circle-plus mr-2"></i> Pubblica sulla Bacheca Ufficiale
           </h4>
           <form onsubmit="postBulletin(event)" class="space-y-3">
             <div>
               <label class="block text-xs font-semibold text-slate-300 mb-1">Titolo Comunicazione</label>
-              <input type="text" id=" bulletinTitle" required placeholder="es. Convocazione Assemblea di Istituto" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-white">
+              <input type="text" id="bulletinTitle" required placeholder="es. Convocazione Assemblea di Istituto" class="w-full bg-slate-950 border border-purple-900/50 rounded-lg p-2 text-xs text-white">
             </div>
             <div>
               <label class="block text-xs font-semibold text-slate-300 mb-1">Testo del Comunicato</label>
-              <textarea id="bulletinText" required rows="2" placeholder="Dettagli dell'avviso..." class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-white"></textarea>
+              <textarea id="bulletinText" required rows="2" placeholder="Dettagli dell'avviso..." class="w-full bg-slate-950 border border-purple-900/50 rounded-lg p-2 text-xs text-white"></textarea>
             </div>
             <div>
               <label class="block text-xs font-semibold text-slate-300 mb-1">Importanza / Categoria</label>
-              <select id="bulletinPriority" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-white">
+              <select id="bulletinPriority" class="w-full bg-slate-950 border border-purple-900/50 rounded-lg p-2 text-xs text-white">
                 <option value="Informativo">Informativo</option>
                 <option value="Urgente">Urgente / Importante</option>
                 <option value="Assemblea">Assemblea</option>
               </select>
             </div>
-            <button type="submit" class="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-semibold py-2 rounded-lg text-xs transition">
+            <button type="submit" class="w-full btn-primary text-white font-semibold py-2 rounded-lg text-xs transition">
               Pubblica in Bacheca
             </button>
           </form>
@@ -454,9 +454,9 @@
       }
 
       bulletins.forEach(b => {
-        const badgeColor = b.priority === 'Urgente' ? 'bg-red-500/20 text-red-300 border-red-500/30' : (b.priority === 'Assemblea' ? 'bg-purple-500/20 text-purple-300 border-purple-500/30' : 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30');
+        const badgeColor = b.priority === 'Urgente' ? 'bg-rose-500/20 text-rose-300 border-rose-500/30' : (b.priority === 'Assemblea' ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30' : 'bg-purple-500/20 text-purple-300 border-purple-500/30');
         const card = document.createElement('div');
-        card.className = 'glass-card rounded-xl p-4 flex flex-col justify-between space-y-2 fade-up border-l-4 border-l-cyan-400';
+        card.className = 'glass-card rounded-xl p-4 flex flex-col justify-between space-y-2 fade-up border-l-4 border-l-purple-500';
         card.innerHTML = `
           <div class="flex justify-between items-start">
             <span class="status-badge ${badgeColor} border">${escapeHtml(b.priority)}</span>
@@ -483,11 +483,11 @@
 
       bulletins.forEach(b => {
         const div = document.createElement('div');
-        div.className = 'p-3 bg-slate-900 rounded-lg border border-slate-700 text-xs space-y-1';
+        div.className = 'p-3 bg-slate-950 rounded-lg border border-purple-900/40 text-xs space-y-1';
         div.innerHTML = `
           <div class="font-bold text-white">${escapeHtml(b.title)}</div>
           <div class="text-slate-400 truncate">${escapeHtml(b.text)}</div>
-          <button onclick="deleteBulletin('${b.id}')" class="text-red-400 hover:text-red-300 font-semibold mt-1 inline-block"><i class="fa-solid fa-trash mr-1"></i> Elimina Comunicato</button>
+          <button onclick="deleteBulletin('${b.id}')" class="text-rose-400 hover:text-rose-300 font-semibold mt-1 inline-block"><i class="fa-solid fa-trash mr-1"></i> Elimina Comunicato</button>
         `;
         container.appendChild(div);
       });
@@ -527,15 +527,15 @@
         card.innerHTML = `
           <div>
             <div class="flex justify-between items-start mb-2">
-              <span class="status-badge bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Approvata</span>
+              <span class="status-badge bg-purple-500/20 text-purple-300 border border-purple-500/30">Approvata</span>
               <span class="text-xs text-slate-400">${new Date(idea.timestamp).toLocaleDateString('it-IT')}</span>
             </div>
             <h4 class="font-bold text-white text-base">${escapeHtml(idea.title)}</h4>
             <p class="text-slate-300 text-sm mt-1 leading-relaxed">${escapeHtml(idea.desc)}</p>
           </div>
-          <div class="pt-2 border-t border-slate-700/50 flex justify-between items-center text-xs text-slate-400">
-            <span><i class="fa-solid fa-user text-emerald-400 mr-1"></i> ${escapeHtml(idea.author)} (${escapeHtml(idea.class)})</span>
-            ${isAdminLoggedIn ? `<button onclick="deleteIdea('${idea.id}')" class="text-red-400 hover:text-red-300"><i class="fa-solid fa-trash"></i></button>` : ''}
+          <div class="pt-2 border-t border-purple-900/40 flex justify-between items-center text-xs text-slate-400">
+            <span><i class="fa-solid fa-user text-purple-400 mr-1"></i> ${escapeHtml(idea.author)} (${escapeHtml(idea.class)})</span>
+            ${isAdminLoggedIn ? `<button onclick="deleteIdea('${idea.id}')" class="text-rose-400 hover:text-rose-300"><i class="fa-solid fa-trash"></i></button>` : ''}
           </div>
         `;
         listContainer.appendChild(card);
@@ -557,14 +557,14 @@
 
       pendingIdeas.forEach(idea => {
         const div = document.createElement('div');
-        div.className = 'p-3 bg-slate-900 rounded-lg border border-slate-700 text-xs space-y-2';
+        div.className = 'p-3 bg-slate-950 rounded-lg border border-purple-900/40 text-xs space-y-2';
         div.innerHTML = `
           <div class="font-bold text-white">${escapeHtml(idea.title)}</div>
           <p class="text-slate-300">${escapeHtml(idea.desc)}</p>
           <div class="text-slate-400">Da: ${escapeHtml(idea.author)} (${escapeHtml(idea.class)})</div>
           <div class="flex space-x-2 pt-1">
-            <button onclick="approveIdea('${idea.id}')" class="bg-emerald-600 hover:bg-emerald-500 text-white px-2.5 py-1 rounded transition">Approva</button>
-            <button onclick="deleteIdea('${idea.id}')" class="bg-red-600 hover:bg-red-500 text-white px-2.5 py-1 rounded transition">Elimina</button>
+            <button onclick="approveIdea('${idea.id}')" class="bg-purple-600 hover:bg-purple-500 text-white px-2.5 py-1 rounded transition">Approva</button>
+            <button onclick="deleteIdea('${idea.id}')" class="bg-rose-600 hover:bg-rose-500 text-white px-2.5 py-1 rounded transition">Elimina</button>
           </div>
         `;
         container.appendChild(div);
