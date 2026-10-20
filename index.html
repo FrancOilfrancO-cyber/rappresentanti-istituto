@@ -106,7 +106,7 @@
       100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
     }
 
-    input:focus, textarea:focus { border-color: #10b981 !important; }
+    input:focus, textarea:focus, select:focus { border-color: #10b981 !important; }
   </style>
 </head>
 <body class="flex flex-col min-h-screen">
@@ -133,7 +133,6 @@
 
       <!-- Desktop Navigation -->
       <div class="hidden md:flex items-center space-x-6 text-sm font-medium">
-        <!-- Indicatore connessione Realtime Database -->
         <span class="flex items-center space-x-2 bg-slate-800/60 border border-slate-700 px-3 py-1 rounded-full text-xs text-slate-300">
           <span id="liveDot" class="live-dot offline"></span>
           <span id="liveText">Connessione al database...</span>
@@ -158,7 +157,7 @@
         <span>Database in tempo reale</span>
       </div>
       <div class="text-xs text-slate-300 px-2 py-1"><i class="fa-solid fa-location-dot text-emerald-400 mr-1"></i> Via Livigno 11, Milano</div>
-      <div class="text-xs text-slate-300 px-2 py-1"><i class="fa-solid fa-door-open text-emerald-400 mr-1"></i> Sede Incontri: Aula Rappresentanti 4TB</div>
+      <div class="text-xs text-slate-300 px-2 py-1"><i class="fa-solid fa-door-open text-emerald-400 mr-1"></i> Aula Rappresentanti 4TB</div>
       <button onclick="openAdminModal()" class="w-full text-left btn-primary text-white px-3 py-2 rounded-lg text-sm font-medium">
         <i class="fa-solid fa-user-shield mr-1"></i> Area Riservata
       </button>
@@ -174,6 +173,22 @@
         <span class="bg-emerald-500/20 text-emerald-300 text-xs px-3 py-1 rounded-full border border-emerald-500/30 font-semibold uppercase tracking-wider">Partecipazione Studentesca</span>
         <h2 class="text-2xl md:text-4xl font-extrabold mt-3 mb-2 gradient-text">Proponi la tua idea per la scuola</h2>
         <p class="text-slate-300 text-sm md:text-base">Invia le tue proposte ai Rappresentanti d'Istituto. Le idee approvate verranno discusse durante i prossimi incontri in Aula 4TB.</p>
+      </div>
+    </section>
+
+    <!-- BACHECA UFFICIALE (PUBBLICA) -->
+    <section class="space-y-4">
+      <div class="flex justify-between items-center">
+        <h3 class="text-xl font-bold text-white flex items-center">
+          <i class="fa-solid fa-bullhorn text-cyan-400 mr-2"></i> Bacheca Ufficiale Rappresentanti
+        </h3>
+        <span class="text-xs bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 px-3 py-1 rounded-full">Comunicazioni Importanti</span>
+      </div>
+      <div id="bulletinBoardList" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Caricato dinamicamente da Firebase -->
+        <div class="col-span-full text-center py-6 text-slate-400 glass-card rounded-xl">
+          <p class="text-sm">Nessun comunicato ufficiale al momento.</p>
+        </div>
       </div>
     </section>
 
@@ -218,7 +233,6 @@
       </div>
 
       <div id="ideasList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <!-- Renderizzato Dinamicamente da Firebase -->
         <div class="col-span-full text-center py-8 text-slate-400">
           <i class="fa-solid fa-spinner fa-spin text-2xl mb-2 text-emerald-400"></i>
           <p class="text-sm">Caricamento proposte dal server cloud...</p>
@@ -247,7 +261,7 @@
 
   <!-- MODALE AUTENTICAZIONE ADMIN -->
   <div id="adminModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="glass-card rounded-2xl max-w-md w-full p-6 space-y-4 relative border border-slate-700">
+    <div class="glass-card rounded-2xl max-w-lg w-full p-6 space-y-4 relative border border-slate-700 max-h-[90vh] overflow-y-auto">
       <button onclick="closeAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
         <i class="fa-solid fa-xmark text-lg"></i>
       </button>
@@ -272,15 +286,52 @@
         </form>
       </div>
 
-      <div id="adminPanel" class="hidden space-y-4">
+      <div id="adminPanel" class="hidden space-y-6">
         <div class="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-emerald-400 text-xs flex justify-between items-center">
           <span><i class="fa-solid fa-circle-check mr-1"></i> Loggato come Super Admin</span>
           <button onclick="handleLogout()" class="text-red-400 hover:underline">Esci</button>
         </div>
 
-        <h4 class="font-bold text-sm text-slate-200">Gestione Modulo / Approvazione Proposte</h4>
-        <div id="pendingIdeas" class="space-y-2 max-h-60 overflow-y-auto pr-1">
-          <!-- Idee in attesa di moderazione -->
+        <!-- SEZIONE AGGIUNTA COMUNICATO BACHECA -->
+        <div class="p-4 bg-slate-800/80 rounded-xl border border-slate-700 space-y-3">
+          <h4 class="font-bold text-sm text-cyan-300 flex items-center">
+            <i class="fa-solid fa-circle-plus mr-2"></i> Pubblica sulla Bacheca Ufficiale
+          </h4>
+          <form onsubmit="postBulletin(event)" class="space-y-3">
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Titolo Comunicazione</label>
+              <input type="text" id=" bulletinTitle" required placeholder="es. Convocazione Assemblea di Istituto" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-white">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Testo del Comunicato</label>
+              <textarea id="bulletinText" required rows="2" placeholder="Dettagli dell'avviso..." class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-white"></textarea>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Importanza / Categoria</label>
+              <select id="bulletinPriority" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-white">
+                <option value="Informativo">Informativo</option>
+                <option value="Urgente">Urgente / Importante</option>
+                <option value="Assemblea">Assemblea</option>
+              </select>
+            </div>
+            <button type="submit" class="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-semibold py-2 rounded-lg text-xs transition">
+              Pubblica in Bacheca
+            </button>
+          </form>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-sm text-slate-200 mb-2">Gestione Proposte Studenti</h4>
+          <div id="pendingIdeas" class="space-y-2 max-h-48 overflow-y-auto pr-1">
+            <!-- Idee in attesa di moderazione -->
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-sm text-slate-200 mb-2">Gestione Bacheca Attiva</h4>
+          <div id="adminBulletinList" class="space-y-2 max-h-48 overflow-y-auto pr-1">
+            <!-- Bacheche pubblicate gestibili -->
+          </div>
         </div>
       </div>
     </div>
@@ -288,7 +339,6 @@
 
   <!-- FIREBASE LOGIC INTEGRATION -->
   <script>
-    // CONFIGURAZIONE FIREBASE ESTRATTA IN TEMPO REALE DALLA CONSOLE GOOGLE
     const firebaseConfig = {
       apiKey: "AIzaSyArLfCiZDd_UdID1082so7OI7DbdwhDiTU",
       authDomain: "marellidudovich.firebaseapp.com",
@@ -300,18 +350,16 @@
       measurementId: "G-XFNKKGKHS7"
     };
 
-    // Inizializzazione Firebase
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
 
-    // Credenziali Admin di Sistema
     const SUPER_ADMIN_EMAIL = "anonimo123qwertyuiop@gmail.com";
     const SUPER_ADMIN_PASS = "Franco@1234.com";
     const SECURITY_DELETE_PASS = "Illeram_2026";
 
     let isAdminLoggedIn = false;
 
-    // Indicatore di connessione al Realtime Database
+    // Indicatore Connessione
     db.ref('.info/connected').on('value', (snap) => {
       const online = snap.val() === true;
       const dot = document.getElementById('liveDot');
@@ -321,11 +369,18 @@
       if (txt) txt.textContent = online ? 'Database in tempo reale attivo' : 'Connessione al database...';
     });
 
-    // Sincronizzazione Realtime
+    // Sincronizzazione Realtime Idee
     db.ref('ideas').on('value', (snapshot) => {
       const data = snapshot.val() || {};
       renderPublicIdeas(data);
       renderPendingIdeas(data);
+    });
+
+    // Sincronizzazione Realtime Bacheca
+    db.ref('bulletins').on('value', (snapshot) => {
+      const data = snapshot.val() || {};
+      renderBulletins(data);
+      renderAdminBulletins(data);
     });
 
     // Submit Nuova Proposta
@@ -343,7 +398,7 @@
         class: userClass,
         title: title,
         desc: desc,
-        status: 'pending', // Di default in attesa di moderazione
+        status: 'pending',
         timestamp: Date.now()
       }, (error) => {
         if (!error) {
@@ -353,6 +408,99 @@
           alert('Errore durante l\'invio: ' + error.message);
         }
       });
+    }
+
+    // Pubblica un elemento nella Bacheca Ufficiale (Riservato Admin)
+    function postBulletin(e) {
+      e.preventDefault();
+      if (!isAdminLoggedIn) return;
+
+      const title = document.getElementById('bulletinTitle').value.trim();
+      const text = document.getElementById('bulletinText').value.trim();
+      const priority = document.getElementById('bulletinPriority').value;
+
+      const newRef = db.ref('bulletins').push();
+      newRef.set({
+        id: newRef.key,
+        title: title,
+        text: text,
+        priority: priority,
+        timestamp: Date.now()
+      }, (error) => {
+        if (!error) {
+          alert('Comunicazione pubblicata con successo nella bacheca ufficiale!');
+          e.target.reset();
+        } else {
+          alert('Errore: ' + error.message);
+        }
+      });
+    }
+
+    // Render Bacheca Pubblica
+    function renderBulletins(bulletinsObj) {
+      const container = document.getElementById('bulletinBoardList');
+      if (!container) return;
+      container.innerHTML = '';
+
+      const bulletins = Object.values(bulletinsObj).sort((a, b) => b.timestamp - a.timestamp);
+
+      if (bulletins.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full text-center py-6 text-slate-400 glass-card rounded-xl">
+            <p class="text-sm">Nessun comunicato ufficiale al momento.</p>
+          </div>
+        `;
+        return;
+      }
+
+      bulletins.forEach(b => {
+        const badgeColor = b.priority === 'Urgente' ? 'bg-red-500/20 text-red-300 border-red-500/30' : (b.priority === 'Assemblea' ? 'bg-purple-500/20 text-purple-300 border-purple-500/30' : 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30');
+        const card = document.createElement('div');
+        card.className = 'glass-card rounded-xl p-4 flex flex-col justify-between space-y-2 fade-up border-l-4 border-l-cyan-400';
+        card.innerHTML = `
+          <div class="flex justify-between items-start">
+            <span class="status-badge ${badgeColor} border">${escapeHtml(b.priority)}</span>
+            <span class="text-xs text-slate-400">${new Date(b.timestamp).toLocaleDateString('it-IT')}</span>
+          </div>
+          <h4 class="font-bold text-white text-base">${escapeHtml(b.title)}</h4>
+          <p class="text-slate-300 text-sm leading-relaxed">${escapeHtml(b.text)}</p>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Render Admin Bacheca Gestione
+    function renderAdminBulletins(bulletinsObj) {
+      const container = document.getElementById('adminBulletinList');
+      if (!container) return;
+      container.innerHTML = '';
+
+      const bulletins = Object.values(bulletinsObj);
+      if (bulletins.length === 0) {
+        container.innerHTML = '<p class="text-xs text-slate-400 italic">Nessun comunicato in bacheca.</p>';
+        return;
+      }
+
+      bulletins.forEach(b => {
+        const div = document.createElement('div');
+        div.className = 'p-3 bg-slate-900 rounded-lg border border-slate-700 text-xs space-y-1';
+        div.innerHTML = `
+          <div class="font-bold text-white">${escapeHtml(b.title)}</div>
+          <div class="text-slate-400 truncate">${escapeHtml(b.text)}</div>
+          <button onclick="deleteBulletin('${b.id}')" class="text-red-400 hover:text-red-300 font-semibold mt-1 inline-block"><i class="fa-solid fa-trash mr-1"></i> Elimina Comunicato</button>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    // Elimina Comunicato Bacheca (Protetta)
+    function deleteBulletin(id) {
+      const pwd = prompt("Inserisci la Password di Sicurezza per la Cancellazione:");
+      if (pwd === SECURITY_DELETE_PASS) {
+        db.ref('bulletins/' + id).remove();
+      } else if (pwd !== null) {
+        alert("Password di sicurezza errata!");
+      }
     }
 
     // Render Idee Approvate (Pubblico)
@@ -403,13 +551,13 @@
       const pendingIdeas = Object.values(ideasObj).filter(item => item.status === 'pending');
 
       if (pendingIdeas.length === 0) {
-        container.innerHTML = '<p class="text-xs text-slate-400 italic">Nessuna proposta in attesa di approvazione.</p>';
+        container.innerHTML = '<p class="text-xs text-slate-400 italic">Nessuna proposta in attesa.</p>';
         return;
       }
 
       pendingIdeas.forEach(idea => {
         const div = document.createElement('div');
-        div.className = 'p-3 bg-slate-800 rounded-lg border border-slate-700 text-xs space-y-2';
+        div.className = 'p-3 bg-slate-900 rounded-lg border border-slate-700 text-xs space-y-2';
         div.innerHTML = `
           <div class="font-bold text-white">${escapeHtml(idea.title)}</div>
           <p class="text-slate-300">${escapeHtml(idea.desc)}</p>
@@ -423,12 +571,10 @@
       });
     }
 
-    // Moderazione: Approva Idea
     function approveIdea(id) {
       db.ref('ideas/' + id).update({ status: 'approved' });
     }
 
-    // Moderazione: Elimina Idea (Richiede Password di Sicurezza)
     function deleteIdea(id) {
       const pwd = prompt("Inserisci la Password di Sicurezza per la Cancellazione:");
       if (pwd === SECURITY_DELETE_PASS) {
@@ -438,7 +584,6 @@
       }
     }
 
-    // Modale e Login Admin
     function openAdminModal() {
       document.getElementById('adminModal').classList.remove('hidden');
     }
@@ -456,7 +601,6 @@
         isAdminLoggedIn = true;
         document.getElementById('loginFormContainer').classList.add('hidden');
         document.getElementById('adminPanel').classList.remove('hidden');
-        // Rirenderizza per aggiornare i pulsanti d'azione
         db.ref('ideas').once('value', snapshot => renderPublicIdeas(snapshot.val() || {}));
       } else {
         alert('Credenziali Super Admin non valide.');
